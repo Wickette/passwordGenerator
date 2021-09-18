@@ -56,7 +56,7 @@ if (passSelection.includeLower===false && passSelection.includeUpper===false && 
 //function that takes variables and options and generates a random password
 
     //1- make array with the characters for the options that are accepted
-let validItems= [];
+let selectedItems= [];
 
 let upperCase= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let lowerCase= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -66,24 +66,24 @@ let symbol= ["~","@", "#","$","%","^","&","*","?","<",">"];
 //go through options selected (if include...) combine to vaild items
 
 if(includeUpper){
-    validItems=validItems.concat(upperCase);
+    selectedItems=selectedItems.concat(upperCase);
 } else {
     //don't include
 }
 
 if(includeLower){
-    validItems=validItems.concat(lowerCase);
+    selectedItems=selectedItems.concat(lowerCase);
 } else {
     //don't include
 }
 
 if(includeNumber){
-    validItems=validItems.concat(number);
+    selectedItems=selectedItems.concat(number);
 } else {
     //don't include
 }
 if(includeSymbol){
-    validItems=validItems.concat(symbol);
+    selectedItems=selectedItems.concat(symbol);
 } else {
     //don't include
 }
@@ -98,16 +98,16 @@ if(includeSymbol){
 let finalPassword = [];
 
 for (let i=0; i < (length.valueOf()); i++){
-    let character = validItems[Math.floor(Math.random() * validItems.length)];
+    let character = selectedItems[Math.floor(Math.random() * selectedItems.length)];
     finalPassword=finalPassword.concat(character);
     
 }
-
+//return password to HTML password text area
 return finalPassword.join("")
 
 
 }
-//return password to HTML password text area
+
 
 //validate that password contains at least 1 of each selection chosen
 //if not, then loop again
