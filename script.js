@@ -1,12 +1,31 @@
-let upperEl = confirm("Would you like any uppercase letters?")
+let finalPassword = {
+  hasUpper: hasUpper,
+  hasLower: hasLower,
+  hasNumber: hasNumber,
+  hasSymbol: hasSymbol
+}
 
-let upperCase= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+for (let i = 0; i === lengthEl; i++){
+console.log(finalPassword[i])
+}
 
-let hasUpper = upperCase[Math.floor(Math.random() * upperCase.length)];
-
-
-if(upperEl===true) {
-  
+if(upperEl===true) {    
+  console.log(hasUpper)
 } else {
   //remove from options
 }
+if(lowerEl===true){    
+  console.log(hasLower)
+} else {
+  //remove from options
+}
+if(numberEl===true){   
+  console.log(hasNumber)
+} else {
+  //remove from options
+}
+if(symbolEl===true){    
+  console.log(hasSymbol)
+}
+
+//

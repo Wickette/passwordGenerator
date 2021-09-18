@@ -20,86 +20,94 @@ function generatePassword() {
 
 ////my code section
 // Ask user for length
-let lengthEl = prompt("How long would you like your password to be?")
+let length = prompt("How long would you like your password to be?")
 
 //validate length to be between 8 and 128 characters
-if (lengthEl >= 8 && lengthEl <= 128 ) {
+if (length >= 8 && length <= 128 ) {
 } else {
     alert("Password length must be between 8 and 128 characters");
 }
 
 //ask user if any lowercase
-let lowerEl = confirm("Would you like any lowercase letters?")
+let includeLower = confirm("Would you like any lowercase letters?")
 
 //ask user if any uppercase
-let upperEl = confirm("Would you like any uppercase letters?")
+let includeUpper = confirm("Would you like any uppercase letters?")
 
 //ask user if any numbers
-let numberEl = confirm("Would you like any numbers letters?")
+let includeNumber = confirm("Would you like any numbers letters?")
 
 //ask user is any symbols
-let symbolEl = confirm("Would you like any symbols letters?")
+let includeSymbol = confirm("Would you like any symbols letters?")
 
 //validate to have at least one of the 4 above options
 let passSelection = {
-    lengthEl: lengthEl,
-    lowerEl: lowerEl,
-    upperEl: upperEl,
-    numberEl: numberEl,
-    symbolEl: symbolEl
+    length: length,
+    includeLower: includeLower,
+    includeUpper: includeUpper,
+    includeNumber: includeNumber,
+    includeSymbol: includeSymbol
 }
 
-if (passSelection.lowerEl===false && passSelection.upperEl===false && passSelection.numberEl===false && passSelection.symbolEl===false) {
+if (passSelection.includeLower===false && passSelection.includeUpper===false && passSelection.includeNumber===false && passSelection.includeSymbol===false) {
     alert("Please choose at least one of the options after length.")
 }
 
 //function that takes variables and options and generates a random password
+
     //1- make array with the characters for the options that are accepted
-    
-    let upperCase= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    let lowerCase= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    let number= [0,1,2,3,4,5,6,7,8,9];
-    let symbol= ["~","@", "#","$","%","^","&","*","?","<",">"];
+let validItems= [];
+
+let upperCase= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+let lowerCase= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+let number= [0,1,2,3,4,5,6,7,8,9];
+let symbol= ["~","@", "#","$","%","^","&","*","?","<",">"];
       
+//go through options selected (if include...) combine to vaild items
+
+if(includeUpper){
+    validItems=validItems.concat(upperCase);
+} else {
+    //don't include
+}
+
+if(includeLower){
+    validItems=validItems.concat(lowerCase);
+} else {
+    //don't include
+}
+
+if(includeNumber){
+    validItems=validItems.concat(number);
+} else {
+    //don't include
+}
+if(includeSymbol){
+    validItems=validItems.concat(symbol);
+} else {
+    //don't include
+}
 
     //2- make new array to push randomly at least one character from the selected options arrays
-    let hasSymbol = symbol[Math.floor(Math.random() * symbol.length)];
-    let hasNumber = number[Math.floor(Math.random() * number.length)];
-    let hasLower = lowerCase[Math.floor(Math.random() * lowerCase.length)];
-    let hasUpper = upperCase[Math.floor(Math.random() * upperCase.length)];
 
-if(upperEl===true) {    
-    console.log(hasUpper)
-} else {
-    //remove from options
-}
-if(lowerEl===true){    
-    console.log(hasLower)
-} else {
-    //remove from options
-}
-if(numberEl===true){   
-    console.log(hasNumber)
-} else {
-    //remove from options
-}
-if(symbolEl===true){    
-    console.log(hasSymbol)
-}
+
 
     //3- push randomly according to length in a loop to a new array
+
+
+let finalPassword = [];
+
+for (let i=0; i < (length.valueOf()); i++){
+    let character = validItems[Math.floor(Math.random() * validItems.length)];
+    finalPassword=finalPassword.concat(character);
     
-let finalPassword = {
-    hasUpper: hasUpper,
-    hasLower: hasLower,
-    hasNumber: hasNumber,
-    hasSymbol: hasSymbol
 }
-for (let i = 0; i === lengthEl; i++){
- console.log(finalPassword[i])
-}
+
+return finalPassword.join("")
 
 
 }
 //return password to HTML password text area
 
+//validate that password contains at least 1 of each selection chosen
+//if not, then loop again
